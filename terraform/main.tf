@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_key_pair" "deploy" {
   key_name   = "terraform-key"
-  public_key = file("/home/rishabhkumarkandoi/.ssh/terraform.pub")
+  public_key = file("~/.ssh/id_rsa.pub")
 }
 
 resource "aws_security_group" "sg" {
@@ -52,7 +52,7 @@ resource "aws_instance" "first_terra_ins" {
   connection {
     type     = "ssh"
     user     = "ec2-user"
-    private_key = file("/home/rishabhkumarkandoi/.ssh/terraform")
+    private_key = file("~/.ssh/id_rsa")
     host     = aws_instance.first_terra_ins.public_ip
   }
 
@@ -195,7 +195,7 @@ resource "null_resource" "mount_vol"  {
   connection {
     type     = "ssh"
     user     = "ec2-user"
-    private_key = file("/home/rishabhkumarkandoi/.ssh/terraform")
+    private_key = file("~/.ssh/id_rsa")
     host     = aws_instance.first_terra_ins.public_ip
   }
 
